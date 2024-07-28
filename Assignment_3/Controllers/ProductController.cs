@@ -21,7 +21,7 @@ namespace Assignment_3.Controllers
         // GET: Product
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Items.ToListAsync());
+            return View(await _context.Products.ToListAsync());
         }
 
         // GET: Product/Details/5
@@ -32,7 +32,7 @@ namespace Assignment_3.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Items
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -72,7 +72,7 @@ namespace Assignment_3.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Items.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace Assignment_3.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Items
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -138,10 +138,10 @@ namespace Assignment_3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Items.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
-                _context.Items.Remove(product);
+                _context.Products.Remove(product);
             }
 
             await _context.SaveChangesAsync();
@@ -150,7 +150,7 @@ namespace Assignment_3.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Items.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }
