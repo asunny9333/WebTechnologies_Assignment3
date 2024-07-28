@@ -1,0 +1,36 @@
+@model Assignment_3.Models.Cart
+
+<h1>Delete Cart</h1>
+
+<div>
+    <h4>Are you sure you want to delete this cart?</h4>
+    <div>
+        <h4>Cart Details</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CartId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CartId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CartItems)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CartItems)
+            </dd>
+        </dl>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CartId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

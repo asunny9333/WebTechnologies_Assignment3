@@ -1,0 +1,27 @@
+@model Assignment_3.Models.Cart
+
+<h1>Cart Details</h1>
+
+<div>
+    <h4>Cart</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CartId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CartId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CartItems)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CartItems)
+        </dd>
+    </dl>
+</div>

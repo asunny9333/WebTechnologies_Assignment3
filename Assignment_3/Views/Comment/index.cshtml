@@ -1,0 +1,38 @@
+@model IEnumerable<Assignment_3.Models.Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>User</th>
+            <th>Rating</th>
+            <th>Image</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.Id</td>
+                <td>@comment.Product?.Description</td>
+                <td>@comment.User?.Username</td>
+                <td>@comment.Rating</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(comment.Image))
+                    {
+                        <img src="@comment.Image" alt="Comment Image" width="100" height="100" />
+                    }
+                </td>
+                <td>@comment.Text</td>
+            </tr>
+        }
+    </tbody>
+</table>

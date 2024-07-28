@@ -1,0 +1,39 @@
+@model Assignment_3.Models.User
+
+<h1>User Details</h1>
+
+<div>
+    <h4>User</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseHistory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseHistory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddress)
+        </dd>
+    </dl>
+</div>

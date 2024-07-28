@@ -1,0 +1,29 @@
+@model IEnumerable<Assignment_3.Models.Cart>
+
+@{
+    ViewData["Title"] = "Carts";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cart ID</th>
+            <th>Number of Items</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cart in Model)
+        {
+            <tr>
+                <td>@cart.CartId</td>
+                <td>@cart.CartItems?.Count()</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,582 @@
+{
+	"info": {
+		"_postman_id": "188a3e2f-4799-4479-9c4b-9780c18729c0",
+		"name": "Assignment_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35096460"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Search User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    \r",
+									"    const requiredFields = [\"id\", \"email\", \"password\", \"username\", \"purchaseHistory\", \"shippingAddress\"];\r",
+									"    requiredFields.forEach(field => {\r",
+									"        pm.expect(responseData).to.have.property(field);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Email is in a valid format\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.email).to.be.a('string').and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email should be in a valid format\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Password should not be empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.password).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/User/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"User",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n\r\n        \"email\": \"user@example.com\",\r\n        \"password\": \"password123\",\r\n        \"username\": \"username\",\r\n        \"purchaseHistory\": \"Purchase history details...\",\r\n        \"shippingAddress\": \"1234 Main St, Anytown, USA\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"email\": \"newemail@example.com\",\r\n    \"password\": \"newpassword\",\r\n    \"username\": \"newusername\",\r\n    \"purchaseHistory\": \"Updated purchase history\",\r\n    \"shippingAddress\": \"New shipping address\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/User/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"User",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Sample Product\",\r\n    \"image\": \"http://example.com/image.jpg\",\r\n    \"pricing\": 19.99,\r\n    \"shippingCost\": 3.99\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/Product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,                      // The ID of the product to be updated\r\n    \"description\": \"Updated Product Description\", // Updated description\r\n    \"image\": \"http://example.com/updated-image.jpg\", // Updated image URL\r\n    \"pricing\": 29.99,            // Updated pricing\r\n    \"shippingCost\": 4.99         // Updated shipping cost\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Product/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Product/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create Cart",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Search Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/Cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Cart",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Cart/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Cart",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ProductId\": 3,\r\n    \"UserId\": 4,\r\n    \"Rating\": 4,\r\n    \"Image\": \"http://example.com/image.jpg\",\r\n    \"Text\": \"This is a great product!\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1,            // The ID of the existing comment you want to update\r\n    \"ProductId\": 3,     // Ensure this product exists in the database\r\n    \"UserId\": 1,        // Ensure this user exists in the database\r\n    \"Rating\": 4,        // New rating\r\n    \"Image\": \"http://example.com/updated_image.jpg\", // New image URL\r\n    \"Text\": \"This product has improved since my last review!\" // Updated text\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/comment/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"comment",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": 1,          \r\n    \"OrderDate\": \"2024-07-28T00:00:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/Order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Ordet",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1,              \r\n    \"UserId\": 1,          \r\n    \"OrderDate\": \"2024-08-29T00:00:00\" \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5106/api/Order/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5106/api/Order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5106",
+							"path": [
+								"api",
+								"Order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

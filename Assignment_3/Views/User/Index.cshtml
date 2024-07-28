@@ -1,0 +1,35 @@
+@model IEnumerable<Assignment_3.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Purchase History</th>
+            <th>Shipping Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>@user.Username</td>
+                <td>@user.PurchaseHistory</td>
+                <td>@user.ShippingAddress</td>
+            </tr>
+        }
+    </tbody>
+</table>
