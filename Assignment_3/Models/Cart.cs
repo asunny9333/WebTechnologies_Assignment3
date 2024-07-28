@@ -6,7 +6,7 @@ namespace Assignment_3.Models
         public int UserId { get; set; } // Foreign key
 
         public User? User { get; set; }
-        public ICollection<CartItem>? CartItems { get; set; } // Navigation property
+        public ICollection<CartItem>? CartItems { get; set; } 
     }
 
     public class CartItem

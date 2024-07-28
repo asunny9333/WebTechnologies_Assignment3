@@ -23,7 +23,7 @@ namespace Assignment_3.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await _context.Users.ToListAsync();
-            return Ok(users); // Returns users as JSON
+            return Ok(users);
         }
 
         // GET: api/User/5
